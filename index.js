@@ -3,7 +3,7 @@ const express = require("express")
 const cors = require("cors")
 const fs = require("fs")
 const app = express()
-const port = 3000
+const port = process.env.PORT // accesses port from within env
 
 const logger = require("./logger")
 
@@ -123,6 +123,6 @@ app.delete("/fruits/:name", (req, res) => {
   }
 })
 
-app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(process.env.PORT, () => { // accesses enviroment variables and port whcih we defined as 3000
+  console.log(`Example app listening on port ${process.env.PORT}`)
 })
