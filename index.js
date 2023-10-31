@@ -1,4 +1,6 @@
+require('dotenv').config()
 const express = require("express")
+const cors = require("cors")
 const fs = require("fs")
 const app = express()
 const port = 3000
@@ -6,6 +8,7 @@ const port = 3000
 const logger = require("./logger")
 
 app.use(express.json())
+app.use(cors())
 app.use(logger)
 
 // ! DATA IMPORT
@@ -108,7 +111,7 @@ app.delete("/fruits/:name", (req, res) => {
           console.log(err)
         } else {
           // Return successfully created status code and echo the new fruit back to the user
-          res.status(204)
+          res.sendStatus(204)
         }
       })
     }
@@ -120,6 +123,6 @@ app.delete("/fruits/:name", (req, res) => {
   }
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${port}`)
 })
